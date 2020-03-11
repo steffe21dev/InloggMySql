@@ -11,30 +11,35 @@ using System.Windows.Forms;
 
 namespace InloggMySql
 {
-    public partial class Inloggad : Form
+    public partial class RegisterForm : Form
     {
-        public Inloggad()
+        public RegisterForm()
         {
             InitializeComponent();
-
-            label1.Text = Program.användare.namn.ToString();
-            label2.Text = Program.användare.adress.ToString();
-            label3.Text = Program.användare.användarnamn.ToString();
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            string query = "UPDATE banktest.användare SET password = '"+textBox1.Text+"' WHERE (användarnamn = '"+Program.användare.användarnamn+"');";
-
+            string query = "INSERT INTO `banktest`.`användare` (`användarnamn`, `password`, `namn`, `adress`) VALUES ('"+textBox1.Text+"', '"+textBox2.Text+"', '"+textBox3.Text+"', '"+textBox4.Text+"')";
             DBConnection dBConnection = DBConnection.Instance();
 
             if (dBConnection.IsConnect())
             {
                 MySqlCommand cmd = new MySqlCommand(query, dBConnection.Connection);
 
-                cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Lösenord bytt!");
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Användare lades till");
+                    this.Close();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                
+
             }
         }
     }

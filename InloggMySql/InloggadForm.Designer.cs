@@ -1,6 +1,6 @@
 ﻿namespace InloggMySql
 {
-    partial class Inloggad
+    partial class InloggadForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,7 +39,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 27);
+            this.label1.Location = new System.Drawing.Point(35, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -48,7 +48,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 57);
+            this.label2.Location = new System.Drawing.Point(35, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 1;
@@ -57,7 +57,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 84);
+            this.label3.Location = new System.Drawing.Point(35, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 2;
@@ -65,43 +65,43 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(91, 170);
+            this.textBox1.Location = new System.Drawing.Point(69, 171);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 3;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(86, 196);
+            this.button1.Location = new System.Drawing.Point(81, 197);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 23);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Byt Lösenord";
+            this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(91, 151);
+            this.label4.Location = new System.Drawing.Point(69, 152);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 13);
+            this.label4.Size = new System.Drawing.Size(65, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Byt password";
+            this.label4.Text = "Byt lösenord";
             // 
-            // Inloggad
+            // InloggadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 271);
+            this.ClientSize = new System.Drawing.Size(235, 248);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Inloggad";
-            this.Text = "Inloggad";
+            this.Name = "InloggadForm";
+            this.Text = "InloggadForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -20,60 +20,59 @@ namespace InloggMySql
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            List<string> arr = new List<string>();
             {
 
                 /*Att göra
+                 
+                *Hämta data från användaren och spara uppgifter. KLAR
 
-                *Hämta data från användaren och spara uppgifter.
-
-                *Möjlighet att ändra lösenord på konto UPDATE.
+                *Möjlighet att ändra lösenord på konto UPDATE. KLAR
 
                 *Dynamiskt hämta konton, alla inlogg kan ju ha olika mängd bankkonton,
                  vi vill kunna se dem konton som finns tillgängliga 
 
+                *Registrering av användarkonto INSERT
+
+
+
 
                 */
             }
 
-            string query = "SELECT * FROM banktest.användare Where användarnamn = "+textBox1.Text+"";
+            string query = "SELECT * FROM användare WHERE användarnamn = '" + textBox1.Text + "' AND password = '" + textBox2.Text + "'";
 
-            DBConnection dbcon = DBConnection.Instance();
+            DBConnection dBConnection = DBConnection.Instance();
 
-            if (dbcon.IsConnect())
+            if (dBConnection.IsConnect())
             {
-                MySqlCommand cmd = new MySqlCommand(query, dbcon.Connection);
+                MySqlCommand cmd = new MySqlCommand(query, dBConnection.Connection);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-
-                while (reader.Read())
+                if (reader.HasRows)
                 {
-                    
-                }
+                    MessageBox.Show("Inloggad");
 
-                /*if (reader.HasRows)
-                {
                     reader.Read();
-                    Program.användare = new Användare(reader.GetString("användarnamn"), reader.GetString("password"),
-                        reader.GetString("namn"), reader.GetString("adress"));
+                    Program.user = new Användare(reader.GetString("användarnamn"), reader.GetString("password"), reader.GetString("namn"), reader.GetString("adress"));
 
-                    Inloggad form = new Inloggad();
-
-                    form.Show();
+                    InloggadForm nyruta = new InloggadForm();
                     this.Hide();
+                    nyruta.Show();
+
                 }
                 else
                 {
-                    MessageBox.Show(query + "funkade inte");
+                    MessageBox.Show("Fel uppgifter");
                 }
-                */
                 reader.Close();
             }
         }
 
-       
-
-        
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            RegisterForm nyruta = new RegisterForm();
+            nyruta.Show();
+        }
     }
 }

@@ -14,7 +14,8 @@ namespace InloggMySql
         /// The main entry point for the application.
         /// </summary>'
         /// 
-        public static Användare användare;
+
+        public static Användare user;
 
         [STAThread]
         static void Main()

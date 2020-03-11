@@ -8,20 +8,19 @@ namespace InloggMySql
 {
     class Användare
     {
-        public string användarnamn { get; }
-
+        public string användarnamn { get; set; }
         public string password { get; set; }
-
-        public string namn { get; }
-
+        public string namn { get; set; }
         public string adress { get; set; }
 
-        public Användare(string användarnamn, string password, string namn, string adress)
+        public Användare(string användarnamn, string password, string namn,string adress)
         {
             this.användarnamn = användarnamn;
             this.password = password;
             this.namn = namn;
             this.adress = adress;
         }
+
+
     }
 }
