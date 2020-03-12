@@ -16,6 +16,7 @@ namespace InloggMySql
         public Form1()
         {
             InitializeComponent();
+            Program.konton = new List<Konto>();
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -29,9 +30,9 @@ namespace InloggMySql
                 *Möjlighet att ändra lösenord på konto UPDATE. KLAR
 
                 *Dynamiskt hämta konton, alla inlogg kan ju ha olika mängd bankkonton,
-                 vi vill kunna se dem konton som finns tillgängliga 
+                 vi vill kunna se dem konton som finns tillgängliga - Att göra
 
-                *Registrering av användarkonto INSERT
+                *Registrering av användarkonto INSERT - Att göra
 
 
 
@@ -60,19 +61,54 @@ namespace InloggMySql
                     this.Hide();
                     nyruta.Show();
 
+                    reader.Close();
+
+                    Hämta_Konton();
+
                 }
                 else
                 {
                     MessageBox.Show("Fel uppgifter");
                 }
-                reader.Close();
             }
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            RegisterForm nyruta = new RegisterForm();
-            nyruta.Show();
+            RegistreraForm ruta = new RegistreraForm();
+            ruta.Show();
+        }
+
+
+        static void Hämta_Konton()
+        {
+            string query = "SELECT * FROM banktest.konto where användarnamn = '"+Program.user.användarnamn+"';";
+
+            DBConnection dBConnection = DBConnection.Instance();
+
+            if (dBConnection.IsConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, dBConnection.Connection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+                    Program.konton.Add(new Konto(reader.GetInt16("idKonto"), reader.GetString("namn"), reader.GetDouble("saldo"), reader.GetString("användarnamn")));
+                }
+
+                reader.Close();
+
+
+                string test = "";
+                for(int i = 0; i < Program.konton.Count; i++)
+                {
+                    test += (Program.konton[i].namn + Environment.NewLine);
+                }
+
+                MessageBox.Show(test);
+            }
         }
     }
 }

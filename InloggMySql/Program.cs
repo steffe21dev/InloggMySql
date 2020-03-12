@@ -16,6 +16,7 @@ namespace InloggMySql
         /// 
 
         public static Användare user;
+        public static List<Konto> konton;
 
         [STAThread]
         static void Main()
