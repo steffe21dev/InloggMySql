@@ -30,9 +30,11 @@ namespace InloggMySql
                 *Möjlighet att ändra lösenord på konto UPDATE. KLAR
 
                 *Dynamiskt hämta konton, alla inlogg kan ju ha olika mängd bankkonton,
-                 vi vill kunna se dem konton som finns tillgängliga - Att göra
+                 vi vill kunna se dem konton som finns tillgängliga - Klar
 
-                *Registrering av användarkonto INSERT - Att göra
+                *Registrering av användarkonto INSERT - Klar
+
+                *Uppritning av konton i vyn - Att göra!
 
 
 
@@ -57,13 +59,13 @@ namespace InloggMySql
                     reader.Read();
                     Program.user = new Användare(reader.GetString("användarnamn"), reader.GetString("password"), reader.GetString("namn"), reader.GetString("adress"));
 
+                    reader.Close();
+
                     InloggadForm nyruta = new InloggadForm();
                     this.Hide();
                     nyruta.Show();
 
-                    reader.Close();
 
-                    Hämta_Konton();
 
                 }
                 else
@@ -80,35 +82,6 @@ namespace InloggMySql
         }
 
 
-        static void Hämta_Konton()
-        {
-            string query = "SELECT * FROM banktest.konto where användarnamn = '"+Program.user.användarnamn+"';";
-
-            DBConnection dBConnection = DBConnection.Instance();
-
-            if (dBConnection.IsConnect())
-            {
-                MySqlCommand cmd = new MySqlCommand(query, dBConnection.Connection);
-
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-
-                while (reader.Read())
-                {
-                    Program.konton.Add(new Konto(reader.GetInt16("idKonto"), reader.GetString("namn"), reader.GetDouble("saldo"), reader.GetString("användarnamn")));
-                }
-
-                reader.Close();
-
-
-                string test = "";
-                for(int i = 0; i < Program.konton.Count; i++)
-                {
-                    test += (Program.konton[i].namn + Environment.NewLine);
-                }
-
-                MessageBox.Show(test);
-            }
-        }
+        
     }
 }
